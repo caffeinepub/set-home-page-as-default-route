@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Web application with routing - needs home page as default landing page instead of project page",
+  "architectural_notes": [],
+  "known_issues": [
+    "Application currently defaults to project page instead of home page on load"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-configure-the-application-routing-so-that-the-home-page-displays-when-users-first-open-the-application-instead-of-the-project-page",
+      "title": "Configure the application routing so that the home page displays when users first open the application, instead of the project page",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Set home page as default route instead of project page",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Set home page as default route",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "build_request",
+  "title": "Set home page as default route",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Configure the application routing so that the home page displays when users first open the application, instead of the project page",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "Is showing the first page as the project page while opening it I need it to show the home page"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Opening the application root URL displays the home page",
+        "The project page remains accessible via its specific route",
+        "Navigation between pages works correctly"
+      ]
+    }
+  ],
+  "constraints": [],
+  "nonGoals": [
+    "Removing or redesigning the project page",
+    "Changing the content of either the home page or project page"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

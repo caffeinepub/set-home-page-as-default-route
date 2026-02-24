@@ -1,0 +1,9 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router configuration, defining routes for home page (/) and project details page (/project-details) with a shared layout component.",
+  "frontend/src/pages/HomePage.tsx": "Home page component featuring a hero section, key features cards, and call-to-action section with navigation to project details.",
+  "frontend/src/pages/ProjectDetailsPage.tsx": "Project details page displaying a grid of project cards with status badges, team information, and deadlines.",
+  "frontend/src/components/Header.tsx": "Sticky header component with navigation links, logo, and active route highlighting.",
+  "frontend/src/components/Footer.tsx": "Footer component with brand information, quick links, social media icons, and Caffeine attribution with UTM tracking.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks file for managing backend data fetching and state management.",
+  "frontend/src/index.css": "Global styles with OKLCH color system for light and dark modes using CSS custom properties."
+}

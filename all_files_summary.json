@@ -1,0 +1,19 @@
+{
+  "backend/main.mo": "Empty Motoko actor serving as the backend canister entry point.",
+  "feature_evidence.json": "Feature evidence report documenting that the home page routing configuration has been implemented in App.tsx with high confidence.",
+  "frontend-file-summaries.txt": "JSON-formatted summaries of frontend files describing the routing setup, page components, header/footer, hooks, and styling.",
+  "frontend/index.css": "Duplicate of frontend/src/index.css containing Tailwind directives and OKLCH color system CSS variables for light and dark themes.",
+  "frontend/index.html": "HTML entry point with root div and module script reference to main.tsx, titled 'Set home page as default route'.",
+  "frontend/src/App.tsx": "TanStack Router configuration defining root layout with Header/Footer and two routes: home page at '/' and project details at '/project-details'.",
+  "frontend/src/components/Footer.tsx": "Footer component with brand info, quick links, social icons, copyright notice, and Caffeine.ai attribution with UTM tracking.",
+  "frontend/src/components/Header.tsx": "Sticky header with ProjectHub logo, navigation buttons for Home and Projects routes, and active route highlighting using TanStack Router state.",
+  "frontend/src/hooks/useActor.ts": "React Query hook that creates and manages the backend actor instance with Internet Identity authentication, invalidating dependent queries on identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Internet Identity authentication provider and hook using @dfinity/auth-client for login, logout, and identity management with delegation validation.",
+  "frontend/src/hooks/useQueries.ts": "Example React Query hook template using useActor for backend data fetching, currently returning null as a placeholder.",
+  "frontend/src/index.css": "Tailwind CSS configuration with OKLCH color system defining CSS custom properties for light and dark mode theming.",
+  "frontend/src/main.tsx": "React application entry point wrapping App with QueryClientProvider and InternetIdentityProvider for state management and authentication.",
+  "frontend/src/pages/HomePage.tsx": "React component rendering the home page with hero section, three feature cards (Intuitive Design, Lightning Fast, Goal Focused), and a call-to-action section with navigation to project details.",
+  "frontend/src/pages/ProjectDetailsPage.tsx": "React component displaying a list of sample projects in a card grid layout with status badges, team size, deadlines, and navigation back to home page.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration with custom color scheme using OKLCH color space, extended theme settings for borders/radius/animations, and plugins for typography, container queries, and animations.",
+  "project_state.json": "Project metadata indicating a fix request to change the default route from project page to home page, with existing routing feature and pending action item AR-1."
+}
