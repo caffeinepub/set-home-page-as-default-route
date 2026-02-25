@@ -89,10 +89,78 @@ export class ExternalBlob {
         return this;
     }
 }
-export interface backendInterface {
+export interface VisitorEntry {
+    username: string;
+    timestamp: bigint;
 }
+export interface backendInterface {
+    clearVisitorLog(pass: string): Promise<boolean>;
+    getNotifications(): Promise<Array<VisitorEntry>>;
+    getVisitorLog(pass: string): Promise<Array<VisitorEntry> | null>;
+    logVisitor(username: string): Promise<void>;
+}
+import type { VisitorEntry as _VisitorEntry } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
+    async clearVisitorLog(arg0: string): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.clearVisitorLog(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.clearVisitorLog(arg0);
+            return result;
+        }
+    }
+    async getNotifications(): Promise<Array<VisitorEntry>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getNotifications();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getNotifications();
+            return result;
+        }
+    }
+    async getVisitorLog(arg0: string): Promise<Array<VisitorEntry> | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getVisitorLog(arg0);
+                return from_candid_opt_n1(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getVisitorLog(arg0);
+            return from_candid_opt_n1(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async logVisitor(arg0: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.logVisitor(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.logVisitor(arg0);
+            return result;
+        }
+    }
+}
+function from_candid_opt_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [Array<_VisitorEntry>]): Array<VisitorEntry> | null {
+    return value.length === 0 ? null : value[0];
 }
 export interface CreateActorOptions {
     agent?: Agent;

@@ -1,21 +1,56 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Set home page as default route",
+  "title": "Remove image links from Team Members page and fix visitor log display + name storage",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Configure routing to display home page as the default route instead of project page",
+      "summary": "Remove all image URL/photo link fields and image rendering from TeamMembersPage, replacing photo avatars with initials-based avatars",
       "acceptanceCriteria": [
-        "Opening the application root URL displays the home page",
-        "The project page remains accessible via its specific route",
-        "Navigation between pages works correctly"
+        "No <img> tags or image URL references remain in TeamMembersPage.tsx",
+        "Each team member card displays an initials avatar derived from the member's name",
+        "The carousel still functions correctly with auto-advance and manual navigation",
+        "No broken image icons or console errors related to image loading"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/pages/TeamMembersPage.tsx",
           "operation": "modify",
-          "description": "Update the routing configuration to set the home page as the default route at '/'. Change the current default route from the project page to the home page, and ensure the project page is accessible via its own specific route path (e.g., '/project' or '/projects'). Verify that all navigation links and route definitions are consistent with the new routing structure."
+          "description": "Remove all image URL fields from team member data structure and remove any <img> tag rendering logic. Replace the avatar display with a component that generates initials from each member's name (first letter of first and last name) and renders them in a circular div with a gradient background. Ensure the carousel auto-advance timer, manual navigation buttons, and card transitions continue working without relying on image load events."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Fix AdminPanel page to correctly display all visitor log entry fields (name and timestamp) returned from the backend",
+      "acceptanceCriteria": [
+        "After entering the correct password, the visitor log table renders one row per entry",
+        "Each row clearly displays the visitor name and timestamp",
+        "No blank or undefined fields appear in the log entries list",
+        "The 'Refresh' action re-fetches and re-renders the updated log correctly"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AdminPanel.tsx",
+          "operation": "modify",
+          "description": "Update the visitor log rendering logic to correctly extract and display the 'username' and 'timestamp' fields from each VisitorEntry returned by the backend. Format the bigint timestamp as a human-readable date/time string. Ensure the table/list structure maps over the entire log array and that the refresh button correctly triggers a re-fetch via the useQueries hook."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Ensure that when a user enters their name on LoginPage, that name is stored in the backend visitor log before navigating to the host page",
+      "acceptanceCriteria": [
+        "Submitting a name on the LoginPage triggers the logVisitor backend call with the entered name",
+        "The entry appears in the AdminPanel visitor log after the user submits their name",
+        "Empty or whitespace-only names are not logged",
+        "Navigation to the host/project page occurs only after the log call is initiated"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/LoginPage.tsx",
+          "operation": "modify",
+          "description": "Update the form submission handler to trim the entered username and reject empty/whitespace-only values. Call the logVisitor mutation from useQueries with the trimmed username before navigating away. Ensure the navigation occurs only after the mutation is initiated (use .then() or await on the mutateAsync call). Add client-side validation to prevent blank entries from being submitted."
         }
       ]
     }

@@ -1,31 +1,95 @@
 {
   "kind": "build_request",
-  "title": "Set home page as default route",
-  "priority": "normal",
+  "title": "Remove image links from Team Members page and fix visitor log display + name storage",
+  "projectName": "Portfolio Visitor Log",
+  "priority": "high",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Configure the application routing so that the home page displays when users first open the application, instead of the project page",
+      "text": "Remove all image URL / photo link fields and image rendering from the TeamMembersPage. Replace any photo avatars with a fallback initials-based avatar for every team member card so the page no longer depends on external image links.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "msg-4"
         ],
         "quotes": [
-          "Is showing the first page as the project page while opening it I need it to show the home page"
+          "Remove the image link added team members page"
         ]
       },
       "acceptanceCriteria": [
-        "Opening the application root URL displays the home page",
-        "The project page remains accessible via its specific route",
-        "Navigation between pages works correctly"
+        "No <img> tags or image URL references remain in TeamMembersPage.tsx",
+        "Each team member card displays an initials avatar derived from the member's name",
+        "The carousel still functions correctly with auto-advance and manual navigation",
+        "No broken image icons or console errors related to image loading"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Fix the backend visitor log so that all stored entry fields (visitor name, timestamp, and any other persisted fields) are correctly returned by the log-retrieval function and are visible in the AdminPanel log entries list.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "the database cannot show the entries details of the users fix it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The getVisitorLog (password-protected) function returns an array of records that each include at minimum the visitor's name and timestamp",
+        "Entries previously stored in stable state are not lost after upgrade",
+        "The function returns all fields that are stored per entry"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Fix the AdminPanel page to correctly display all fields of each visitor log entry (name, timestamp, and any additional fields) returned from the backend. Each row in the log table/list must show the visitor's name and the time they visited.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "the database cannot show the entries details of the users fix it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After entering the correct password, the visitor log table renders one row per entry",
+        "Each row clearly displays the visitor name and timestamp",
+        "No blank or undefined fields appear in the log entries list",
+        "The 'Refresh' action re-fetches and re-renders the updated log correctly"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Ensure that when a user enters their name on the LoginPage and proceeds to view the project, that name is stored in the backend visitor log (logVisitor call) with the current timestamp before navigating away. The logVisitor mutation must fire and complete successfully on name submission.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "when a user enters their name to see my project their name should be stored in the log entries"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Submitting a name on the LoginPage triggers the logVisitor backend call with the entered name",
+        "The entry appears in the AdminPanel visitor log after the user submits their name",
+        "Empty or whitespace-only names are not logged",
+        "Navigation to the host/project page occurs only after the log call is initiated"
       ]
     }
   ],
-  "constraints": [],
+  "constraints": [
+    "Do not modify files listed in frontend.immutablePaths",
+    "All Motoko logic must remain in the single actor in backend/main.mo",
+    "Existing stable log entries must be preserved through any backend upgrade (use migration if schema changes)"
+  ],
   "nonGoals": [
-    "Removing or redesigning the project page",
-    "Changing the content of either the home page or project page"
+    "Adding new team member data or changing team member information",
+    "Redesigning the overall visual theme or layout",
+    "Adding authentication beyond the existing password-gated admin panel",
+    "Implementing real-time updates or WebSocket-based log streaming"
   ],
   "imageRequirements": {
     "required": [],

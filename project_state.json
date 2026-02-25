@@ -1,32 +1,53 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Web application with routing - needs home page as default landing page instead of project page",
-  "architectural_notes": [],
+  "summary": "Project includes an admin panel, team members page, and a user log/database system where visitor names are stored when they enter their name to view the project.",
+  "architectural_notes": [
+    "Team members page should not include image links — display text/info only",
+    "User log entries must store visitor names when they enter their name to view the project"
+  ],
   "known_issues": [
-    "Application currently defaults to project page instead of home page on load"
+    "Database not displaying user entry details in the admin panel log entries view"
   ],
   "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-configure-the-application-routing-so-that-the-home-page-displays-when-users-first-open-the-application-instead-of-the-project-page",
-      "title": "Configure the application routing so that the home page displays when users first open the application, instead of the project page",
+      "id": "feature-remove-all-image-url-photo-link-fields-and-image-rendering-from-the-teammemberspage-replace-any-photo-avatars-with-a-fallback-initials-based-avatar-for-every-team-member-card-so-the-page-no-longer-depends-on-external-image-links",
+      "title": "Remove all image URL / photo link fields and image rendering from the TeamMembersPage. Replace any photo avatars with a fallback initials-based avatar for every team member card so the page no longer depends on external image links.",
       "reqIds": [
         "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-adminpanel-page-to-correctly-display-all-fields-of-each-visitor-log-entry-name-timestamp-and-any-additional-fields-returned-from-the-backend-each-row-in-the-log-table-list-must-show-the-visitor-s-name-and-the-time-they-visited",
+      "title": "Fix the AdminPanel page to correctly display all fields of each visitor log entry (name, timestamp, and any additional fields) returned from the backend. Each row in the log table/list must show the visitor's name and the time they visited.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-that-when-a-user-enters-their-name-on-the-loginpage-and-proceeds-to-view-the-project-that-name-is-stored-in-the-backend-visitor-log-logvisitor-call-with-the-current-timestamp-before-navigating-away-the-logvisitor-mutation-must-fire-and-complete-successfully-on-name-submission",
+      "title": "Ensure that when a user enters their name on the LoginPage and proceeds to view the project, that name is stored in the backend visitor log (logVisitor call) with the current timestamp before navigating away. The logVisitor mutation must fire and complete successfully on name submission.",
+      "reqIds": [
+        "REQ-4"
       ],
       "version": 1
     }
   ],
   "new_feature_requests": [
     {
-      "id": "AR-1",
-      "summary": "Set home page as default route instead of project page",
-      "reqIds": [],
+      "id": "AR-2",
+      "summary": "Fix the backend visitor log so that all stored entry fields (visitor name, timestamp, and any other persisted fields) are correctly returned by the log-retrieval function and are visible in the AdminPanel log entries list.",
+      "reqIds": [
+        "REQ-2"
+      ],
       "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "Set home page as default route",
+  "projectName": "Portfolio Visitor Log",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

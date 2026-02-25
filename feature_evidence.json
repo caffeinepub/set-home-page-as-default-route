@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-configure-the-application-routing-so-that-the-home-page-displays-when-users-first-open-the-application-instead-of-the-project-page",
-      "featureTitle": "Configure the application routing so that the home page displays when users first open the application, instead of the project page",
+      "featureId": "feature-remove-all-image-url-photo-link-fields-and-image-rendering-from-the-teammemberspage-replace-any-photo-avatars-with-a-fallback-initials-based-avatar-for-every-team-member-card-so-the-page-no-longer-depends-on-external-image-links",
+      "featureTitle": "Remove all image URL / photo link fields and image rendering from the TeamMembersPage. Replace any photo avatars with a fallback initials-based avatar for every team member card so the page no longer depends on external image links.",
       "files": [
-        "frontend/src/App.tsx"
+        "frontend/src/pages/TeamMembersPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,6 +16,42 @@
       ],
       "testIds": [
         "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-the-adminpanel-page-to-correctly-display-all-fields-of-each-visitor-log-entry-name-timestamp-and-any-additional-fields-returned-from-the-backend-each-row-in-the-log-table-list-must-show-the-visitor-s-name-and-the-time-they-visited",
+      "featureTitle": "Fix the AdminPanel page to correctly display all fields of each visitor log entry (name, timestamp, and any additional fields) returned from the backend. Each row in the log table/list must show the visitor's name and the time they visited.",
+      "files": [
+        "frontend/src/pages/AdminPanel.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-that-when-a-user-enters-their-name-on-the-loginpage-and-proceeds-to-view-the-project-that-name-is-stored-in-the-backend-visitor-log-logvisitor-call-with-the-current-timestamp-before-navigating-away-the-logvisitor-mutation-must-fire-and-complete-successfully-on-name-submission",
+      "featureTitle": "Ensure that when a user enters their name on the LoginPage and proceeds to view the project, that name is stored in the backend visitor log (logVisitor call) with the current timestamp before navigating away. The logVisitor mutation must fire and complete successfully on name submission.",
+      "files": [
+        "frontend/src/pages/LoginPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
       ],
       "confidence": "high"
     }

@@ -8,10 +8,40 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const idlService = IDL.Service({});
+export const VisitorEntry = IDL.Record({
+  'username' : IDL.Text,
+  'timestamp' : IDL.Int,
+});
+
+export const idlService = IDL.Service({
+  'clearVisitorLog' : IDL.Func([IDL.Text], [IDL.Bool], []),
+  'getNotifications' : IDL.Func([], [IDL.Vec(VisitorEntry)], ['query']),
+  'getVisitorLog' : IDL.Func(
+      [IDL.Text],
+      [IDL.Opt(IDL.Vec(VisitorEntry))],
+      ['query'],
+    ),
+  'logVisitor' : IDL.Func([IDL.Text], [], []),
+});
 
 export const idlInitArgs = [];
 
-export const idlFactory = ({ IDL }) => { return IDL.Service({}); };
+export const idlFactory = ({ IDL }) => {
+  const VisitorEntry = IDL.Record({
+    'username' : IDL.Text,
+    'timestamp' : IDL.Int,
+  });
+  
+  return IDL.Service({
+    'clearVisitorLog' : IDL.Func([IDL.Text], [IDL.Bool], []),
+    'getNotifications' : IDL.Func([], [IDL.Vec(VisitorEntry)], ['query']),
+    'getVisitorLog' : IDL.Func(
+        [IDL.Text],
+        [IDL.Opt(IDL.Vec(VisitorEntry))],
+        ['query'],
+      ),
+    'logVisitor' : IDL.Func([IDL.Text], [], []),
+  });
+};
 
 export const init = ({ IDL }) => { return []; };
