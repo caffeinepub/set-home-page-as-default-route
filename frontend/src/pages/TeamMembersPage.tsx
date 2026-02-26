@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Briefcase, GraduationCap } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Briefcase, GraduationCap, Sparkles } from 'lucide-react';
 
 interface TeamMember {
   name: string;
@@ -126,53 +126,146 @@ export default function TeamMembersPage() {
               }}
             />
 
-            <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
-              {/* Avatar column */}
-              <div className="flex-shrink-0 flex flex-col items-center gap-4">
-                {/* Glassmorphic profile photo frame */}
+            <div className="flex flex-col md:flex-row items-center gap-10 relative z-10">
+              {/* Avatar column — glassmorphic portrait card */}
+              <div className="flex-shrink-0 flex flex-col items-center gap-5">
+
+                {/* Outer glow halo */}
                 <div
-                  className="relative"
                   style={{
-                    filter: `drop-shadow(0 0 20px ${member.accentColor}50) drop-shadow(0 0 40px ${member.accentColor}20)`,
+                    filter: `drop-shadow(0 0 28px ${member.accentColor}60) drop-shadow(0 0 56px ${member.accentColor}25)`,
                   }}
                 >
+                  {/* Glassmorphic portrait frame */}
                   <div
-                    className="relative overflow-hidden"
+                    className="relative"
                     style={{
-                      width: '140px',
-                      height: '140px',
-                      borderRadius: '50%',
-                      border: `3px solid ${member.accentColor}60`,
-                      boxShadow: `0 0 30px ${member.accentColor}40, 0 0 60px ${member.accentColor}15`,
-                      background: `radial-gradient(circle at 30% 30%, ${member.accentColor}20, ${member.accentColor}08)`,
+                      width: '200px',
+                      height: '240px',
+                      borderRadius: '20px',
+                      background: `linear-gradient(145deg, ${member.accentColor}18 0%, rgba(5,5,16,0.6) 60%, ${member.accentColor}08 100%)`,
+                      backdropFilter: 'blur(18px)',
+                      WebkitBackdropFilter: 'blur(18px)',
+                      border: `1.5px solid ${member.accentColor}50`,
+                      boxShadow: `
+                        0 0 0 1px ${member.accentColor}15,
+                        0 8px 40px rgba(0,0,0,0.6),
+                        0 0 30px ${member.accentColor}30,
+                        inset 0 1px 0 rgba(255,255,255,0.10),
+                        inset 0 -1px 0 ${member.accentColor}20
+                      `,
+                      overflow: 'hidden',
                     }}
                   >
+                    {/* Inner image */}
                     {!hasImgError ? (
                       <img
                         src={member.photo}
                         alt={member.name}
                         className="w-full h-full object-cover object-top"
+                        style={{
+                          filter: 'brightness(1.12) contrast(1.1) saturate(1.15)',
+                          borderRadius: '18px',
+                        }}
                         onError={() => setImgError((prev) => ({ ...prev, [current]: true }))}
                       />
                     ) : (
-                      <span
-                        className="w-full h-full flex items-center justify-center font-orbitron font-bold text-4xl select-none"
+                      <div
+                        className="w-full h-full flex items-center justify-center"
                         style={{
-                          color: member.accentColor,
-                          textShadow: `0 0 20px ${member.accentColor}80`,
+                          background: `radial-gradient(circle at 40% 35%, ${member.accentColor}22, rgba(5,5,16,0.8))`,
                         }}
                       >
-                        {member.initials}
-                      </span>
+                        <span
+                          className="font-orbitron font-bold text-5xl select-none"
+                          style={{
+                            color: member.accentColor,
+                            textShadow: `0 0 24px ${member.accentColor}90, 0 0 48px ${member.accentColor}40`,
+                          }}
+                        >
+                          {member.initials}
+                        </span>
+                      </div>
                     )}
-                    {/* Neon ring overlay */}
+
+                    {/* Frosted bottom overlay with name */}
                     <div
-                      className="absolute inset-0 rounded-full pointer-events-none"
+                      className="absolute bottom-0 left-0 right-0 px-3 py-2.5"
                       style={{
-                        boxShadow: `inset 0 0 12px ${member.accentColor}30`,
+                        background: `linear-gradient(to top, rgba(5,5,16,0.88) 0%, rgba(5,5,16,0.55) 70%, transparent 100%)`,
+                        backdropFilter: 'blur(6px)',
+                        WebkitBackdropFilter: 'blur(6px)',
+                        borderTop: `1px solid ${member.accentColor}25`,
+                      }}
+                    >
+                      <p
+                        className="text-center font-orbitron font-bold text-xs tracking-widest truncate"
+                        style={{
+                          color: member.accentColor,
+                          textShadow: `0 0 10px ${member.accentColor}80`,
+                        }}
+                      >
+                        {member.name.toUpperCase()}
+                      </p>
+                    </div>
+
+                    {/* Neon inner ring overlay */}
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        borderRadius: '18px',
+                        boxShadow: `inset 0 0 18px ${member.accentColor}18, inset 0 0 4px ${member.accentColor}30`,
+                      }}
+                    />
+
+                    {/* Corner accent dots */}
+                    {[
+                      { top: '8px', left: '8px' },
+                      { top: '8px', right: '8px' },
+                      { bottom: '38px', left: '8px' },
+                      { bottom: '38px', right: '8px' },
+                    ].map((pos, i) => (
+                      <div
+                        key={i}
+                        className="absolute w-1.5 h-1.5 rounded-full pointer-events-none"
+                        style={{
+                          ...pos,
+                          background: member.accentColor,
+                          boxShadow: `0 0 6px ${member.accentColor}`,
+                          opacity: 0.85,
+                        }}
+                      />
+                    ))}
+
+                    {/* Scan-line shimmer */}
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background: `repeating-linear-gradient(
+                          0deg,
+                          transparent,
+                          transparent 3px,
+                          ${member.accentColor}04 3px,
+                          ${member.accentColor}04 4px
+                        )`,
+                        borderRadius: '18px',
                       }}
                     />
                   </div>
+                </div>
+
+                {/* Sparkle badge */}
+                <div
+                  className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-rajdhani font-semibold tracking-wider"
+                  style={{
+                    background: `${member.accentColor}10`,
+                    border: `1px solid ${member.accentColor}35`,
+                    color: `${member.accentColor}cc`,
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <Sparkles className="w-3 h-3" />
+                  TEAM MEMBER
                 </div>
 
                 {/* Slide indicator dots */}

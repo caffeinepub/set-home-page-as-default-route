@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-26T05:47:18.736Z",
+  "generatedAt": "2026-02-26T05:55:24.438Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -12,18 +12,18 @@
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Use the uploaded photo of Saarumathi.A (IMG_20260226_111401.jpg) as the enhanced profile image static asset at frontend/public/assets/generated/saarumathi-profile-enhanced.jpg, consistent with how Naveen.V's enhanced photo was integrated.",
+        "summary": "Redesign both team member profile images in TeamMembersPage.tsx to use a glassmorphic frame: apply a frosted-glass card effect (backdrop-blur, semi-transparent background, subtle border with white/light opacity) around each member's photo, ensuring the image is displayed at a consistent and suitable size (e.g., 200×200px or similar square dimensions) with rounded corners and a soft glowing border to match the existing dark futuristic glassmorphism theme.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/generated/saarumathi-profile-enhanced.dim_400x500.jpg"
+          "frontend/src/pages/TeamMembersPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/public/assets/generated/saarumathi-profile-enhanced.dim_400x500.jpg"
+          "frontend/src/pages/TeamMembersPage.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Display Saarumathi.A's enhanced profile photo in the TeamMembersPage carousel slide for her profile, replacing the fallback initials avatar. The photo should render inside a glassmorphic card matching the existing styling used for Naveen.V's profile slide.",
+        "summary": "Enhance both team member profile images visually: apply CSS-level enhancements such as brightness boost, slight contrast increase, and a subtle inner glow or drop-shadow to make the photos appear more vibrant and polished within the glassmorphic frames.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/pages/TeamMembersPage.tsx"
@@ -39,7 +39,6 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/saarumathi-profile-enhanced.dim_400x500.jpg",
     "frontend/src/pages/TeamMembersPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",

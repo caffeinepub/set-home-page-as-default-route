@@ -2,9 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-use-the-uploaded-photo-of-saarumathi-a-img-20260226-111401-jpg-as-the-enhanced-profile-image-static-asset-at-frontend-public-assets-generated-saarumathi-profile-enhanced-jpg-consistent-with-how-naveen-v-s-enhanced-photo-was-integrated",
-      "featureTitle": "Use the uploaded photo of Saarumathi.A (IMG_20260226_111401.jpg) as the enhanced profile image static asset at frontend/public/assets/generated/saarumathi-profile-enhanced.jpg, consistent with how Naveen.V's enhanced photo was integrated.",
-      "files": [],
+      "featureId": "feature-redesign-both-team-member-profile-images-in-teammemberspage-tsx-to-use-a-glassmorphic-frame-apply-a-frosted-glass-card-effect-backdrop-blur-semi-transparent-background-subtle-border-with-white-light-opacity-around-each-member-s-photo-ensuring-the-image-is-displayed-at-a-consistent-and-suitable-size-e-g-200-200px-or-similar-square-dimensions-with-rounded-corners-and-a-soft-glowing-border-to-match-the-existing-dark-futuristic-glassmorphism-theme",
+      "featureTitle": "Redesign both team member profile images in TeamMembersPage.tsx to use a glassmorphic frame: apply a frosted-glass card effect (backdrop-blur, semi-transparent background, subtle border with white/light opacity) around each member's photo, ensuring the image is displayed at a consistent and suitable size (e.g., 200×200px or similar square dimensions) with rounded corners and a soft glowing border to match the existing dark futuristic glassmorphism theme.",
+      "files": [
+        "frontend/src/pages/TeamMembersPage.tsx"
+      ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
@@ -18,8 +20,8 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-display-saarumathi-a-s-enhanced-profile-photo-in-the-teammemberspage-carousel-slide-for-her-profile-replacing-the-fallback-initials-avatar-the-photo-should-render-inside-a-glassmorphic-card-matching-the-existing-styling-used-for-naveen-v-s-profile-slide",
-      "featureTitle": "Display Saarumathi.A's enhanced profile photo in the TeamMembersPage carousel slide for her profile, replacing the fallback initials avatar. The photo should render inside a glassmorphic card matching the existing styling used for Naveen.V's profile slide.",
+      "featureId": "feature-enhance-both-team-member-profile-images-visually-apply-css-level-enhancements-such-as-brightness-boost-slight-contrast-increase-and-a-subtle-inner-glow-or-drop-shadow-to-make-the-photos-appear-more-vibrant-and-polished-within-the-glassmorphic-frames",
+      "featureTitle": "Enhance both team member profile images visually: apply CSS-level enhancements such as brightness boost, slight contrast increase, and a subtle inner glow or drop-shadow to make the photos appear more vibrant and polished within the glassmorphic frames.",
       "files": [
         "frontend/src/pages/TeamMembersPage.tsx"
       ],

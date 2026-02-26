@@ -1,25 +1,24 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Project involves a team/host details page with glassmorphic design, displaying enhanced photos for team members. Currently adding and enhancing a photo for team member Saarumathi.A.",
+  "summary": "Project involves a team section with member photos. User wants team member images redesigned with glassmorphic theme, suitable sizing, and image enhancement.",
   "architectural_notes": [
-    "Team/host details page uses glassmorphic design for displaying member photos"
+    "Team section contains member photos that use glassmorphic UI theme"
   ],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Edit Images\n- Enhance the portrait photo with improved brightness, contrast, sharpness, and skin tone clarity; crop to focus on face and upper body with a clean, professional look (IMG_20260226_111401.jpg > saarumathi-profile-enhanced.dim_400x500.jpg)",
   "existing_features": [
     {
-      "id": "feature-use-the-uploaded-photo-of-saarumathi-a-img-20260226-111401-jpg-as-the-enhanced-profile-image-static-asset-at-frontend-public-assets-generated-saarumathi-profile-enhanced-jpg-consistent-with-how-naveen-v-s-enhanced-photo-was-integrated",
-      "title": "Use the uploaded photo of Saarumathi.A (IMG_20260226_111401.jpg) as the enhanced profile image static asset at frontend/public/assets/generated/saarumathi-profile-enhanced.jpg, consistent with how Naveen.V's enhanced photo was integrated.",
+      "id": "feature-redesign-both-team-member-profile-images-in-teammemberspage-tsx-to-use-a-glassmorphic-frame-apply-a-frosted-glass-card-effect-backdrop-blur-semi-transparent-background-subtle-border-with-white-light-opacity-around-each-member-s-photo-ensuring-the-image-is-displayed-at-a-consistent-and-suitable-size-e-g-200-200px-or-similar-square-dimensions-with-rounded-corners-and-a-soft-glowing-border-to-match-the-existing-dark-futuristic-glassmorphism-theme",
+      "title": "Redesign both team member profile images in TeamMembersPage.tsx to use a glassmorphic frame: apply a frosted-glass card effect (backdrop-blur, semi-transparent background, subtle border with white/light opacity) around each member's photo, ensuring the image is displayed at a consistent and suitable size (e.g., 200×200px or similar square dimensions) with rounded corners and a soft glowing border to match the existing dark futuristic glassmorphism theme.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-display-saarumathi-a-s-enhanced-profile-photo-in-the-teammemberspage-carousel-slide-for-her-profile-replacing-the-fallback-initials-avatar-the-photo-should-render-inside-a-glassmorphic-card-matching-the-existing-styling-used-for-naveen-v-s-profile-slide",
-      "title": "Display Saarumathi.A's enhanced profile photo in the TeamMembersPage carousel slide for her profile, replacing the fallback initials avatar. The photo should render inside a glassmorphic card matching the existing styling used for Naveen.V's profile slide.",
+      "id": "feature-enhance-both-team-member-profile-images-visually-apply-css-level-enhancements-such-as-brightness-boost-slight-contrast-increase-and-a-subtle-inner-glow-or-drop-shadow-to-make-the-photos-appear-more-vibrant-and-polished-within-the-glassmorphic-frames",
+      "title": "Enhance both team member profile images visually: apply CSS-level enhancements such as brightness boost, slight contrast increase, and a subtle inner glow or drop-shadow to make the photos appear more vibrant and polished within the glassmorphic frames.",
       "reqIds": [
         "REQ-2"
       ],
@@ -29,13 +28,13 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add and enhance photo for team member Saarumathi.A on the team details page",
+      "summary": "Redesign team member images with glassmorphic theme, suitable sizing, and image enhancement",
       "reqIds": [],
       "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "Team Showcase",
+  "projectName": "Team Portfolio",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

@@ -1,37 +1,40 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add and enhance Saarumathi.A's photo on TeamMembersPage",
+  "title": "Redesign team member images with glassmorphic theme, suitable sizing, and enhancement",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Integrate the enhanced profile photo of Saarumathi.A as a static asset in the frontend",
+      "summary": "Redesign both team member profile images with glassmorphic frame, consistent sizing (200×200px square), rounded corners, and glowing border matching the dark futuristic glassmorphism theme",
       "acceptanceCriteria": [
-        "The enhanced photo file saarumathi-profile-enhanced.jpg is present in frontend/public/assets/generated/",
-        "The image is visually enhanced (improved brightness, contrast, and sharpness) compared to the raw upload"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/assets/generated/saarumathi-profile-enhanced.dim_400x500.jpg",
-          "operation": "create",
-          "description": "Add the enhanced portrait photo of Saarumathi.A as a static asset. This file is generated from IMG_20260226_111401.jpg with enhanced brightness, contrast, sharpness, and skin tone clarity, cropped to focus on face and upper body with a clean, professional look. Use the workspace file path frontend/public/assets/generated/saarumathi-profile-enhanced.dim_400x500.jpg to reference this asset in the UI."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Display Saarumathi.A's enhanced profile photo in the TeamMembersPage carousel slide",
-      "acceptanceCriteria": [
-        "Saarumathi.A's carousel slide shows her enhanced photo instead of initials fallback",
-        "The photo is displayed clearly with proper cropping/framing (face and upper body visible)",
-        "The photo container uses the same glassmorphic card styling as Naveen.V's slide",
-        "No layout shift or sizing inconsistency between the two team member slides"
+        "Both team member photos (Naveen V and Saarumathi A) are displayed at a consistent, suitable size within a glassmorphic frame.",
+        "The image container uses backdrop-blur, semi-transparent background, and a glowing or frosted border consistent with the app's glassmorphic design system.",
+        "Images have rounded corners and do not appear stretched or cropped awkwardly.",
+        "The fallback initials avatar also inherits the same glassmorphic styling.",
+        "The carousel layout remains functional and responsive after the redesign."
       ],
       "file_operations": [
         {
           "path": "frontend/src/pages/TeamMembersPage.tsx",
           "operation": "modify",
-          "description": "Update the team member data for Saarumathi.A to reference the enhanced profile photo at frontend/public/assets/generated/saarumathi-profile-enhanced.dim_400x500.jpg. Replace the current photo value (sarumathi-profile.dim_400x400.png) with the new enhanced image path. Ensure the photo is displayed inside the same glassmorphic card styling used for Naveen.V's profile slide, with proper image cropping/framing to show face and upper body clearly. Do not alter the carousel structure, animation logic, or slide layout beyond updating the photo source for Saarumathi.A."
+          "description": "Wrap each member's photo/avatar in a glassmorphic container div applying backdrop-blur-md, bg-white/5 or bg-black/20 semi-transparent background, border border-white/20, rounded-2xl corners, and a neon-glow-cyan or similar glowing box-shadow. Set the img element to a consistent square size (e.g., w-[200px] h-[200px] or w-48 h-48) with object-cover to prevent stretching. Apply the same glassmorphic styling to the fallback initials avatar container. Ensure the carousel's directional animation and navigation logic remain intact."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Enhance team member profile images with CSS-level brightness boost, contrast increase, and subtle inner glow or drop-shadow for a more vibrant and polished appearance",
+      "acceptanceCriteria": [
+        "Team member photos appear visually enhanced (brighter, higher contrast) compared to plain rendering.",
+        "A subtle glow or shadow effect is applied to the image element or its container.",
+        "Enhancements are consistent for both members.",
+        "Enhancements do not degrade readability of surrounding text or UI elements."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/TeamMembersPage.tsx",
+          "operation": "modify",
+          "description": "Apply inline or Tailwind utility classes to the img element: brightness-110 contrast-110 (or filter: brightness(1.1) contrast(1.1)) to boost vibrancy. Add drop-shadow-lg or a custom shadow-[0_0_20px_rgba(0,255,255,0.3)] to create a subtle glow around the image. Ensure the enhancements apply to both members' photos consistently and do not interfere with the glassmorphic frame or carousel functionality."
         }
       ]
     }

@@ -1,11 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Add and display an enhanced profile photo for Saarumathi.A on the TeamMembersPage carousel.
+**Goal:** Redesign the team member profile image cards in TeamMembersPage.tsx with glassmorphic styling and CSS-level visual enhancements.
 
 **Planned changes:**
-- Enhance Saarumathi.A's uploaded photo (improved brightness, contrast, sharpness, and skin tone clarity) and save it as `saarumathi-profile-enhanced.jpg` in the assets folder
-- Replace the initials fallback avatar in Saarumathi.A's carousel slide with her enhanced profile photo
-- Apply the same glassmorphic card styling used for Naveen.V's profile slide to Saarumathi.A's photo display
+- Wrap each team member's photo in a glassmorphic frame using backdrop-blur, semi-transparent background, and a subtle glowing/frosted border consistent with the dark futuristic theme
+- Display profile images at a consistent square size (e.g., 200×200px) with rounded corners, avoiding stretching or awkward cropping
+- Apply CSS enhancements to the images (brightness boost, contrast increase, subtle inner glow or drop-shadow) to make photos appear more vibrant and polished
+- Apply the same glassmorphic styling to the fallback initials avatar
+- Ensure the carousel layout remains functional and responsive after the redesign
 
-**User-visible outcome:** Saarumathi.A's TeamMembersPage carousel slide shows her enhanced profile photo in a glassmorphic card, consistent with Naveen.V's slide styling.
+**User-visible outcome:** Both team member profile photos (Naveen V and Saarumathi A) appear in polished glassmorphic frames with consistent sizing, rounded corners, glowing borders, and visually enhanced (brighter, higher contrast) photos that fit the dark futuristic theme.
