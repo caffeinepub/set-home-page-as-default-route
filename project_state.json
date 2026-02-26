@@ -1,53 +1,41 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Project includes an admin panel, team members page, and a user log/database system where visitor names are stored when they enter their name to view the project.",
+  "summary": "Project involves a team/host details page with glassmorphic design, displaying enhanced photos for team members. Currently adding and enhancing a photo for team member Saarumathi.A.",
   "architectural_notes": [
-    "Team members page should not include image links — display text/info only",
-    "User log entries must store visitor names when they enter their name to view the project"
+    "Team/host details page uses glassmorphic design for displaying member photos"
   ],
-  "known_issues": [
-    "Database not displaying user entry details in the admin panel log entries view"
-  ],
-  "isFixRequest": true,
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Edit Images\n- Enhance the portrait photo with improved brightness, contrast, sharpness, and skin tone clarity; crop to focus on face and upper body with a clean, professional look (IMG_20260226_111401.jpg > saarumathi-profile-enhanced.dim_400x500.jpg)",
   "existing_features": [
     {
-      "id": "feature-remove-all-image-url-photo-link-fields-and-image-rendering-from-the-teammemberspage-replace-any-photo-avatars-with-a-fallback-initials-based-avatar-for-every-team-member-card-so-the-page-no-longer-depends-on-external-image-links",
-      "title": "Remove all image URL / photo link fields and image rendering from the TeamMembersPage. Replace any photo avatars with a fallback initials-based avatar for every team member card so the page no longer depends on external image links.",
+      "id": "feature-use-the-uploaded-photo-of-saarumathi-a-img-20260226-111401-jpg-as-the-enhanced-profile-image-static-asset-at-frontend-public-assets-generated-saarumathi-profile-enhanced-jpg-consistent-with-how-naveen-v-s-enhanced-photo-was-integrated",
+      "title": "Use the uploaded photo of Saarumathi.A (IMG_20260226_111401.jpg) as the enhanced profile image static asset at frontend/public/assets/generated/saarumathi-profile-enhanced.jpg, consistent with how Naveen.V's enhanced photo was integrated.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-fix-the-adminpanel-page-to-correctly-display-all-fields-of-each-visitor-log-entry-name-timestamp-and-any-additional-fields-returned-from-the-backend-each-row-in-the-log-table-list-must-show-the-visitor-s-name-and-the-time-they-visited",
-      "title": "Fix the AdminPanel page to correctly display all fields of each visitor log entry (name, timestamp, and any additional fields) returned from the backend. Each row in the log table/list must show the visitor's name and the time they visited.",
+      "id": "feature-display-saarumathi-a-s-enhanced-profile-photo-in-the-teammemberspage-carousel-slide-for-her-profile-replacing-the-fallback-initials-avatar-the-photo-should-render-inside-a-glassmorphic-card-matching-the-existing-styling-used-for-naveen-v-s-profile-slide",
+      "title": "Display Saarumathi.A's enhanced profile photo in the TeamMembersPage carousel slide for her profile, replacing the fallback initials avatar. The photo should render inside a glassmorphic card matching the existing styling used for Naveen.V's profile slide.",
       "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-that-when-a-user-enters-their-name-on-the-loginpage-and-proceeds-to-view-the-project-that-name-is-stored-in-the-backend-visitor-log-logvisitor-call-with-the-current-timestamp-before-navigating-away-the-logvisitor-mutation-must-fire-and-complete-successfully-on-name-submission",
-      "title": "Ensure that when a user enters their name on the LoginPage and proceeds to view the project, that name is stored in the backend visitor log (logVisitor call) with the current timestamp before navigating away. The logVisitor mutation must fire and complete successfully on name submission.",
-      "reqIds": [
-        "REQ-4"
+        "REQ-2"
       ],
       "version": 1
     }
   ],
   "new_feature_requests": [
     {
-      "id": "AR-2",
-      "summary": "Fix the backend visitor log so that all stored entry fields (visitor name, timestamp, and any other persisted fields) are correctly returned by the log-retrieval function and are visible in the AdminPanel log entries list.",
-      "reqIds": [
-        "REQ-2"
-      ],
+      "id": "AR-1",
+      "summary": "Add and enhance photo for team member Saarumathi.A on the team details page",
+      "reqIds": [],
       "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "Portfolio Visitor Log",
+  "projectName": "Team Showcase",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

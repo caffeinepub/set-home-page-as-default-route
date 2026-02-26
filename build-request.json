@@ -1,98 +1,59 @@
 {
   "kind": "build_request",
-  "title": "Remove image links from Team Members page and fix visitor log display + name storage",
-  "projectName": "Portfolio Visitor Log",
-  "priority": "high",
+  "title": "Add and enhance Saarumathi.A's photo on TeamMembersPage",
+  "projectName": "Team Showcase",
+  "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Remove all image URL / photo link fields and image rendering from the TeamMembersPage. Replace any photo avatars with a fallback initials-based avatar for every team member card so the page no longer depends on external image links.",
+      "text": "Use the uploaded photo of Saarumathi.A (IMG_20260226_111401.jpg) as the enhanced profile image static asset at frontend/public/assets/generated/saarumathi-profile-enhanced.jpg, consistent with how Naveen.V's enhanced photo was integrated.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "Remove the image link added team members page"
+          "add this photo clearly for my team members Saarumathi.A and also enhance it"
         ]
       },
       "acceptanceCriteria": [
-        "No <img> tags or image URL references remain in TeamMembersPage.tsx",
-        "Each team member card displays an initials avatar derived from the member's name",
-        "The carousel still functions correctly with auto-advance and manual navigation",
-        "No broken image icons or console errors related to image loading"
+        "The enhanced photo file saarumathi-profile-enhanced.jpg is present in frontend/public/assets/generated/",
+        "The image is visually enhanced (improved brightness, contrast, and sharpness) compared to the raw upload"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Fix the backend visitor log so that all stored entry fields (visitor name, timestamp, and any other persisted fields) are correctly returned by the log-retrieval function and are visible in the AdminPanel log entries list.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "the database cannot show the entries details of the users fix it"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The getVisitorLog (password-protected) function returns an array of records that each include at minimum the visitor's name and timestamp",
-        "Entries previously stored in stable state are not lost after upgrade",
-        "The function returns all fields that are stored per entry"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Fix the AdminPanel page to correctly display all fields of each visitor log entry (name, timestamp, and any additional fields) returned from the backend. Each row in the log table/list must show the visitor's name and the time they visited.",
+      "text": "Display Saarumathi.A's enhanced profile photo in the TeamMembersPage carousel slide for her profile, replacing the fallback initials avatar. The photo should render inside a glassmorphic card matching the existing styling used for Naveen.V's profile slide.",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-4"
         ],
         "quotes": [
-          "the database cannot show the entries details of the users fix it"
+          "add this photo clearly for my team members Saarumathi.A"
         ]
       },
       "acceptanceCriteria": [
-        "After entering the correct password, the visitor log table renders one row per entry",
-        "Each row clearly displays the visitor name and timestamp",
-        "No blank or undefined fields appear in the log entries list",
-        "The 'Refresh' action re-fetches and re-renders the updated log correctly"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Ensure that when a user enters their name on the LoginPage and proceeds to view the project, that name is stored in the backend visitor log (logVisitor call) with the current timestamp before navigating away. The logVisitor mutation must fire and complete successfully on name submission.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "when a user enters their name to see my project their name should be stored in the log entries"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Submitting a name on the LoginPage triggers the logVisitor backend call with the entered name",
-        "The entry appears in the AdminPanel visitor log after the user submits their name",
-        "Empty or whitespace-only names are not logged",
-        "Navigation to the host/project page occurs only after the log call is initiated"
+        "Saarumathi.A's carousel slide shows her enhanced photo instead of initials fallback",
+        "The photo is displayed clearly with proper cropping/framing (face and upper body visible)",
+        "The photo container uses the same glassmorphic card styling as Naveen.V's slide",
+        "No layout shift or sizing inconsistency between the two team member slides"
       ]
     }
   ],
   "constraints": [
-    "Do not modify files listed in frontend.immutablePaths",
-    "All Motoko logic must remain in the single actor in backend/main.mo",
-    "Existing stable log entries must be preserved through any backend upgrade (use migration if schema changes)"
+    "Do not alter the carousel structure or animation logic in TeamMembersPage.tsx beyond updating the photo source for Saarumathi.A",
+    "Match the exact same glassmorphic card styling already applied to Naveen.V's profile photo"
   ],
   "nonGoals": [
-    "Adding new team member data or changing team member information",
-    "Redesigning the overall visual theme or layout",
-    "Adding authentication beyond the existing password-gated admin panel",
-    "Implementing real-time updates or WebSocket-based log streaming"
+    "Adding any new team members beyond Saarumathi.A",
+    "Modifying backend logic",
+    "Changing the overall page layout or navigation"
   ],
   "imageRequirements": {
     "required": [],
-    "edits": []
+    "edits": [
+      "Enhance the portrait photo with improved brightness, contrast, sharpness, and skin tone clarity; crop to focus on face and upper body with a clean, professional look (IMG_20260226_111401.jpg > saarumathi-profile-enhanced.dim_400x500.jpg)"
+    ]
   }
 }

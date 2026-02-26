@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Brain,
   Code2,
@@ -72,6 +72,8 @@ function RevealSection({ children, className = '' }: { children: React.ReactNode
 }
 
 export default function HostDetailsPage() {
+  const [avatarError, setAvatarError] = useState(false);
+
   return (
     <div
       className="relative min-h-screen py-12 px-4 grid-bg"
@@ -89,18 +91,136 @@ export default function HostDetailsPage() {
                 filter: 'blur(40px)',
               }}
             />
+            <div
+              className="absolute bottom-0 left-0 w-48 h-48 rounded-full pointer-events-none"
+              style={{
+                background: 'radial-gradient(circle, rgba(191,90,242,0.06), transparent)',
+                filter: 'blur(40px)',
+              }}
+            />
 
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-8 relative z-10">
-              {/* Avatar */}
-              <div
-                className="flex-shrink-0 w-28 h-28 rounded-full flex items-center justify-center"
-                style={{
-                  background: 'rgba(0, 245, 255, 0.08)',
-                  border: '2px solid rgba(0, 245, 255, 0.4)',
-                  boxShadow: '0 0 30px rgba(0, 245, 255, 0.2)',
-                }}
-              >
-                <User className="w-14 h-14" style={{ color: '#00f5ff' }} />
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-10 relative z-10">
+              {/* Glassmorphic Profile Photo Card */}
+              <div className="flex-shrink-0 flex flex-col items-center">
+                {/* Outer glow ring */}
+                <div
+                  className="relative"
+                  style={{
+                    filter: 'drop-shadow(0 0 24px rgba(0,245,255,0.45)) drop-shadow(0 0 48px rgba(0,245,255,0.18))',
+                  }}
+                >
+                  {/* Glassmorphic frame */}
+                  <div
+                    className="relative rounded-2xl overflow-hidden"
+                    style={{
+                      width: '220px',
+                      height: '290px',
+                      background: 'linear-gradient(135deg, rgba(0,245,255,0.10) 0%, rgba(191,90,242,0.07) 60%, rgba(0,0,0,0.35) 100%)',
+                      backdropFilter: 'blur(18px)',
+                      WebkitBackdropFilter: 'blur(18px)',
+                      border: '1.5px solid rgba(0,245,255,0.38)',
+                      boxShadow:
+                        '0 8px 40px rgba(0,245,255,0.18), 0 2px 0 rgba(255,255,255,0.06) inset, 0 0 0 1px rgba(191,90,242,0.12)',
+                    }}
+                  >
+                    {/* Inner shimmer top edge */}
+                    <div
+                      className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+                      style={{
+                        background: 'linear-gradient(90deg, transparent, rgba(0,245,255,0.6), rgba(191,90,242,0.4), transparent)',
+                      }}
+                    />
+                    {/* Inner shimmer left edge */}
+                    <div
+                      className="absolute top-0 left-0 bottom-0 w-px pointer-events-none"
+                      style={{
+                        background: 'linear-gradient(180deg, rgba(0,245,255,0.5), transparent 60%)',
+                      }}
+                    />
+
+                    {/* Photo */}
+                    {!avatarError ? (
+                      <img
+                        src="/assets/generated/naveen-profile.dim_600x800.png"
+                        alt="Naveen V"
+                        className="w-full h-full object-cover object-top"
+                        style={{ display: 'block' }}
+                        onError={() => setAvatarError(true)}
+                      />
+                    ) : (
+                      <div
+                        className="w-full h-full flex items-center justify-center"
+                        style={{ background: 'rgba(0,245,255,0.06)' }}
+                      >
+                        <User className="w-20 h-20" style={{ color: '#00f5ff' }} />
+                      </div>
+                    )}
+
+                    {/* Bottom frosted overlay with name */}
+                    <div
+                      className="absolute bottom-0 left-0 right-0 px-3 py-3"
+                      style={{
+                        background: 'linear-gradient(0deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 60%, transparent 100%)',
+                        backdropFilter: 'blur(6px)',
+                        WebkitBackdropFilter: 'blur(6px)',
+                      }}
+                    >
+                      <p
+                        className="text-center font-orbitron font-bold text-xs tracking-widest"
+                        style={{ color: '#00f5ff', textShadow: '0 0 10px rgba(0,245,255,0.7)' }}
+                      >
+                        NAVEEN V
+                      </p>
+                      <p
+                        className="text-center font-rajdhani text-xs mt-0.5 tracking-wider"
+                        style={{ color: 'rgba(191,90,242,0.9)' }}
+                      >
+                        HOST · PROJECT LEAD
+                      </p>
+                    </div>
+
+                    {/* Corner accent dots */}
+                    <div
+                      className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full"
+                      style={{ background: '#00f5ff', boxShadow: '0 0 6px #00f5ff' }}
+                    />
+                    <div
+                      className="absolute top-2 left-2 w-1.5 h-1.5 rounded-full"
+                      style={{ background: 'rgba(0,245,255,0.4)' }}
+                    />
+                  </div>
+
+                  {/* Neon scan line animation */}
+                  <div
+                    className="absolute inset-0 rounded-2xl pointer-events-none overflow-hidden"
+                    style={{ width: '220px', height: '290px' }}
+                  >
+                    <div
+                      className="absolute left-0 right-0 h-px"
+                      style={{
+                        background: 'linear-gradient(90deg, transparent, rgba(0,245,255,0.5), transparent)',
+                        animation: 'scanLine 3s linear infinite',
+                        top: '0',
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Status badge below photo */}
+                <div
+                  className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-rajdhani font-semibold tracking-widest"
+                  style={{
+                    background: 'rgba(0, 245, 255, 0.08)',
+                    border: '1px solid rgba(0, 245, 255, 0.25)',
+                    color: 'rgba(0, 245, 255, 0.8)',
+                  }}
+                >
+                  <span
+                    className="w-1.5 h-1.5 rounded-full"
+                    style={{ background: '#00f5ff', boxShadow: '0 0 6px #00f5ff', display: 'inline-block' }}
+                  />
+                  ONLINE
+                </div>
               </div>
 
               {/* Info */}
@@ -140,6 +260,38 @@ export default function HostDetailsPage() {
                       Priyadarshini Engineering College
                     </span>
                   </div>
+                </div>
+
+                {/* Quick stats */}
+                <div className="grid grid-cols-2 gap-3 mt-6">
+                  {[
+                    { label: 'Projects', value: '5+' },
+                    { label: 'Skills', value: '8+' },
+                    { label: 'Focus', value: 'AI/DS' },
+                    { label: 'Year', value: '2026' },
+                  ].map((stat, i) => (
+                    <div
+                      key={i}
+                      className="rounded-xl px-4 py-3 text-center"
+                      style={{
+                        background: 'rgba(0,245,255,0.05)',
+                        border: '1px solid rgba(0,245,255,0.15)',
+                      }}
+                    >
+                      <div
+                        className="font-orbitron font-bold text-lg"
+                        style={{ color: '#00f5ff', textShadow: '0 0 8px rgba(0,245,255,0.5)' }}
+                      >
+                        {stat.value}
+                      </div>
+                      <div
+                        className="font-rajdhani text-xs tracking-wider"
+                        style={{ color: 'rgba(150,180,220,0.6)' }}
+                      >
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -209,31 +361,23 @@ export default function HostDetailsPage() {
         <RevealSection className="mb-12">
           <h2
             className="text-xl font-orbitron font-bold mb-6 text-center"
-            style={{ color: '#00f5ff', textShadow: '0 0 10px rgba(0,245,255,0.4)' }}
+            style={{ color: '#bf5af2', textShadow: '0 0 10px rgba(191,90,242,0.4)' }}
           >
-            PROJECT INTERESTS
+            AREAS OF INTEREST
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {interests.map((item, i) => (
               <div
                 key={i}
-                className="glass-card p-6 transition-all duration-300 group"
-                style={{ cursor: 'default' }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-4px)';
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = `0 8px 40px rgba(0,0,0,0.5), 0 0 20px ${item.color}22`;
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)';
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = '';
-                }}
+                className="glass-card p-6 text-center group"
+                style={{ animationDelay: `${i * 0.15}s` }}
               >
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"
                   style={{
-                    background: `${item.color}15`,
-                    border: `1px solid ${item.color}40`,
-                    boxShadow: `0 0 15px ${item.color}20`,
+                    background: `${item.color}12`,
+                    border: `1px solid ${item.color}30`,
+                    boxShadow: `0 0 15px ${item.color}15`,
                   }}
                 >
                   <item.icon className="w-6 h-6" style={{ color: item.color }} />
@@ -244,36 +388,24 @@ export default function HostDetailsPage() {
                 >
                   {item.title}
                 </h3>
-                <p className="text-sm font-inter" style={{ color: 'rgba(180, 200, 230, 0.7)' }}>
+                <p className="text-xs font-inter leading-relaxed" style={{ color: 'rgba(180, 200, 230, 0.65)' }}>
                   {item.desc}
                 </p>
               </div>
             ))}
           </div>
         </RevealSection>
-
-        {/* AI Tech Hero Image */}
-        <RevealSection>
-          <div className="glass-card p-4 overflow-hidden">
-            <div
-              className="text-xs font-rajdhani font-semibold tracking-widest mb-3 px-2"
-              style={{ color: 'rgba(0, 245, 255, 0.5)' }}
-            >
-              AI TECHNOLOGY VISUALIZATION
-            </div>
-            <img
-              src="/assets/generated/ai-tech-hero.dim_1200x600.png"
-              alt="AI Technology"
-              className="w-full rounded-xl object-cover"
-              style={{
-                maxHeight: '400px',
-                border: '1px solid rgba(0, 245, 255, 0.15)',
-                boxShadow: '0 0 30px rgba(0, 245, 255, 0.08)',
-              }}
-            />
-          </div>
-        </RevealSection>
       </div>
+
+      {/* Scan line keyframe */}
+      <style>{`
+        @keyframes scanLine {
+          0% { top: 0%; opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { top: 100%; opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 }

@@ -8,6 +8,7 @@ interface TeamMember {
   description: string;
   accentColor: string;
   initials: string;
+  photo: string;
 }
 
 const teamMembers: TeamMember[] = [
@@ -19,6 +20,7 @@ const teamMembers: TeamMember[] = [
       'Naveen is the visionary behind the project, driving the design architecture and overall project strategy with a keen eye for AI-based innovations. His leadership ensures the team stays focused, organized, and aligned with the project goals. With a deep passion for intelligent systems, Naveen transforms complex ideas into structured, executable plans.',
     accentColor: '#00f5ff',
     initials: 'NV',
+    photo: '/assets/generated/naveen-profile.dim_600x800.png',
   },
   {
     name: 'Saarumathi A',
@@ -28,6 +30,7 @@ const teamMembers: TeamMember[] = [
       "Saarumathi brings sharp analytical skills and strong development expertise, turning complex problems into clean, working solutions. Her ability to dissect technical challenges and implement efficient code makes her the backbone of the project's development phase. She excels at finding elegant solutions where others see only obstacles.",
     accentColor: '#bf5af2',
     initials: 'SA',
+    photo: '/assets/generated/saarumathi-profile-enhanced.dim_400x500.jpg',
   },
 ];
 
@@ -35,6 +38,7 @@ export default function TeamMembersPage() {
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [direction, setDirection] = useState<'left' | 'right'>('right');
+  const [imgError, setImgError] = useState<Record<number, boolean>>({});
   const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goTo = (index: number, dir: 'left' | 'right') => {
@@ -69,6 +73,7 @@ export default function TeamMembersPage() {
   }, [current, animating]);
 
   const member = teamMembers[current];
+  const hasImgError = imgError[current];
 
   return (
     <div
@@ -124,24 +129,50 @@ export default function TeamMembersPage() {
             <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
               {/* Avatar column */}
               <div className="flex-shrink-0 flex flex-col items-center gap-4">
-                {/* Initials avatar */}
+                {/* Glassmorphic profile photo frame */}
                 <div
-                  className="w-36 h-36 rounded-full flex items-center justify-center relative"
+                  className="relative"
                   style={{
-                    border: `3px solid ${member.accentColor}60`,
-                    boxShadow: `0 0 30px ${member.accentColor}30, 0 0 60px ${member.accentColor}10`,
-                    background: `radial-gradient(circle at 30% 30%, ${member.accentColor}20, ${member.accentColor}08)`,
+                    filter: `drop-shadow(0 0 20px ${member.accentColor}50) drop-shadow(0 0 40px ${member.accentColor}20)`,
                   }}
                 >
-                  <span
-                    className="font-orbitron font-bold text-4xl select-none"
+                  <div
+                    className="relative overflow-hidden"
                     style={{
-                      color: member.accentColor,
-                      textShadow: `0 0 20px ${member.accentColor}80`,
+                      width: '140px',
+                      height: '140px',
+                      borderRadius: '50%',
+                      border: `3px solid ${member.accentColor}60`,
+                      boxShadow: `0 0 30px ${member.accentColor}40, 0 0 60px ${member.accentColor}15`,
+                      background: `radial-gradient(circle at 30% 30%, ${member.accentColor}20, ${member.accentColor}08)`,
                     }}
                   >
-                    {member.initials}
-                  </span>
+                    {!hasImgError ? (
+                      <img
+                        src={member.photo}
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top"
+                        onError={() => setImgError((prev) => ({ ...prev, [current]: true }))}
+                      />
+                    ) : (
+                      <span
+                        className="w-full h-full flex items-center justify-center font-orbitron font-bold text-4xl select-none"
+                        style={{
+                          color: member.accentColor,
+                          textShadow: `0 0 20px ${member.accentColor}80`,
+                        }}
+                      >
+                        {member.initials}
+                      </span>
+                    )}
+                    {/* Neon ring overlay */}
+                    <div
+                      className="absolute inset-0 rounded-full pointer-events-none"
+                      style={{
+                        boxShadow: `inset 0 0 12px ${member.accentColor}30`,
+                      }}
+                    />
+                  </div>
                 </div>
 
                 {/* Slide indicator dots */}
@@ -187,8 +218,11 @@ export default function TeamMembersPage() {
                 </h2>
 
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
-                  <GraduationCap className="w-4 h-4 flex-shrink-0" style={{ color: 'rgba(150,180,220,0.6)' }} />
-                  <span className="text-sm font-rajdhani" style={{ color: 'rgba(180, 200, 230, 0.7)' }}>
+                  <GraduationCap className="w-4 h-4 flex-shrink-0" style={{ color: member.accentColor }} />
+                  <span
+                    className="text-sm font-rajdhani"
+                    style={{ color: 'rgba(200, 220, 240, 0.7)' }}
+                  >
                     {member.college}
                   </span>
                 </div>
@@ -206,54 +240,37 @@ export default function TeamMembersPage() {
           {/* Navigation arrows */}
           <button
             onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
             style={{
-              background: 'rgba(5, 5, 16, 0.9)',
-              border: `1px solid ${member.accentColor}40`,
-              color: member.accentColor,
-              boxShadow: `0 0 15px ${member.accentColor}20`,
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 20px ${member.accentColor}50`;
-              (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-50%) translateX(-20px) scale(1.1)';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 15px ${member.accentColor}20`;
-              (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-50%) translateX(-20px) scale(1)';
+              background: 'rgba(10,15,30,0.85)',
+              border: '1px solid rgba(191,90,242,0.3)',
+              boxShadow: '0 0 15px rgba(191,90,242,0.2)',
+              color: '#bf5af2',
             }}
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-
           <button
             onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
             style={{
-              background: 'rgba(5, 5, 16, 0.9)',
-              border: `1px solid ${member.accentColor}40`,
-              color: member.accentColor,
-              boxShadow: `0 0 15px ${member.accentColor}20`,
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 20px ${member.accentColor}50`;
-              (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-50%) translateX(20px) scale(1.1)';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 15px ${member.accentColor}20`;
-              (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-50%) translateX(20px) scale(1)';
+              background: 'rgba(10,15,30,0.85)',
+              border: '1px solid rgba(191,90,242,0.3)',
+              boxShadow: '0 0 15px rgba(191,90,242,0.2)',
+              color: '#bf5af2',
             }}
           >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Member counter */}
+        {/* Member count */}
         <div className="text-center mt-8">
           <span
             className="text-xs font-rajdhani tracking-widest"
             style={{ color: 'rgba(150, 180, 220, 0.4)' }}
           >
-            {current + 1} / {teamMembers.length} MEMBERS
+            {current + 1} / {teamMembers.length}
           </span>
         </div>
       </div>

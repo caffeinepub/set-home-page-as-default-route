@@ -1,56 +1,37 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Remove image links from Team Members page and fix visitor log display + name storage",
+  "title": "Add and enhance Saarumathi.A's photo on TeamMembersPage",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Remove all image URL/photo link fields and image rendering from TeamMembersPage, replacing photo avatars with initials-based avatars",
+      "summary": "Integrate the enhanced profile photo of Saarumathi.A as a static asset in the frontend",
       "acceptanceCriteria": [
-        "No <img> tags or image URL references remain in TeamMembersPage.tsx",
-        "Each team member card displays an initials avatar derived from the member's name",
-        "The carousel still functions correctly with auto-advance and manual navigation",
-        "No broken image icons or console errors related to image loading"
+        "The enhanced photo file saarumathi-profile-enhanced.jpg is present in frontend/public/assets/generated/",
+        "The image is visually enhanced (improved brightness, contrast, and sharpness) compared to the raw upload"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/saarumathi-profile-enhanced.dim_400x500.jpg",
+          "operation": "create",
+          "description": "Add the enhanced portrait photo of Saarumathi.A as a static asset. This file is generated from IMG_20260226_111401.jpg with enhanced brightness, contrast, sharpness, and skin tone clarity, cropped to focus on face and upper body with a clean, professional look. Use the workspace file path frontend/public/assets/generated/saarumathi-profile-enhanced.dim_400x500.jpg to reference this asset in the UI."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Display Saarumathi.A's enhanced profile photo in the TeamMembersPage carousel slide",
+      "acceptanceCriteria": [
+        "Saarumathi.A's carousel slide shows her enhanced photo instead of initials fallback",
+        "The photo is displayed clearly with proper cropping/framing (face and upper body visible)",
+        "The photo container uses the same glassmorphic card styling as Naveen.V's slide",
+        "No layout shift or sizing inconsistency between the two team member slides"
       ],
       "file_operations": [
         {
           "path": "frontend/src/pages/TeamMembersPage.tsx",
           "operation": "modify",
-          "description": "Remove all image URL fields from team member data structure and remove any <img> tag rendering logic. Replace the avatar display with a component that generates initials from each member's name (first letter of first and last name) and renders them in a circular div with a gradient background. Ensure the carousel auto-advance timer, manual navigation buttons, and card transitions continue working without relying on image load events."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Fix AdminPanel page to correctly display all visitor log entry fields (name and timestamp) returned from the backend",
-      "acceptanceCriteria": [
-        "After entering the correct password, the visitor log table renders one row per entry",
-        "Each row clearly displays the visitor name and timestamp",
-        "No blank or undefined fields appear in the log entries list",
-        "The 'Refresh' action re-fetches and re-renders the updated log correctly"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/AdminPanel.tsx",
-          "operation": "modify",
-          "description": "Update the visitor log rendering logic to correctly extract and display the 'username' and 'timestamp' fields from each VisitorEntry returned by the backend. Format the bigint timestamp as a human-readable date/time string. Ensure the table/list structure maps over the entire log array and that the refresh button correctly triggers a re-fetch via the useQueries hook."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Ensure that when a user enters their name on LoginPage, that name is stored in the backend visitor log before navigating to the host page",
-      "acceptanceCriteria": [
-        "Submitting a name on the LoginPage triggers the logVisitor backend call with the entered name",
-        "The entry appears in the AdminPanel visitor log after the user submits their name",
-        "Empty or whitespace-only names are not logged",
-        "Navigation to the host/project page occurs only after the log call is initiated"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/LoginPage.tsx",
-          "operation": "modify",
-          "description": "Update the form submission handler to trim the entered username and reject empty/whitespace-only values. Call the logVisitor mutation from useQueries with the trimmed username before navigating away. Ensure the navigation occurs only after the mutation is initiated (use .then() or await on the mutateAsync call). Add client-side validation to prevent blank entries from being submitted."
+          "description": "Update the team member data for Saarumathi.A to reference the enhanced profile photo at frontend/public/assets/generated/saarumathi-profile-enhanced.dim_400x500.jpg. Replace the current photo value (sarumathi-profile.dim_400x400.png) with the new enhanced image path. Ensure the photo is displayed inside the same glassmorphic card styling used for Naveen.V's profile slide, with proper image cropping/framing to show face and upper body clearly. Do not alter the carousel structure, animation logic, or slide layout beyond updating the photo source for Saarumathi.A."
         }
       ]
     }
